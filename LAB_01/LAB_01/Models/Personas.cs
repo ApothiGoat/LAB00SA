@@ -8,6 +8,7 @@ namespace LAB_01.Models
 {
     public class Personas
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
 
         public string Apellido{ get; set; }
