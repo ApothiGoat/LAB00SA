@@ -25,6 +25,7 @@ namespace Lab_1.Help
         {
             new Personas
             {
+               Id = 0,
                Nombre = "Nombre",
                Apellido = "Apellido",
                Telefono = "Numero",

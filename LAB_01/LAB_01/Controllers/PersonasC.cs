@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LAB_01.Controllers
 {
-    public class HomeController1 : Controller
+    public class PersonasC : Controller
     {
         // GET: HomeController1
         public ActionResult Index()
@@ -18,9 +18,9 @@ namespace LAB_01.Controllers
         }
 
         // GET: HomeController1/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            var model = Data.Instance.personaslist.Find(per => per.Nombre == id);
+            var model = Data.Instance.personaslist.Find(per => per.Id == id);
             return View(model);
         }
 
@@ -39,6 +39,7 @@ namespace LAB_01.Controllers
             {
                 var respone =(Personas.Save(new Personas
                 {
+                    Id = int.Parse(collection["ID"]),
                     Nombre = collection["Nombre"],
                     Apellido = collection["Apellido"],
                     Telefono = collection["Telefono"],
@@ -57,9 +58,9 @@ namespace LAB_01.Controllers
         }
 
         // GET: HomeController1/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            var model = Data.Instance.personaslist.Find(per => per.Nombre == id);
+            var model = Data.Instance.personaslist.Find(per => per.Id == id);
             return View(model);
         }
 
