@@ -71,7 +71,19 @@ namespace LAB_01.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var respone = (Personas.Edit(new Personas
+                {
+                    Id = int.Parse(collection[""]),
+                    Nombre = collection[""],
+                    Apellido = collection[""],
+                    Telefono = collection[""],
+                    Descripcion = collection[""],
+                }));
+                if (respone)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {
@@ -82,6 +94,7 @@ namespace LAB_01.Controllers
         // GET: HomeController1/Delete/5
         public ActionResult Delete(int id)
         {
+            var model = Data.Instance.personaslist.Find(per => per.Id == id);
             return View();
         }
 
@@ -92,6 +105,7 @@ namespace LAB_01.Controllers
         {
             try
             {
+
                 return RedirectToAction(nameof(Index));
             }
             catch

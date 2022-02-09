@@ -9,6 +9,7 @@ namespace LAB_01.Models
     public class Personas
     {
         public int Id { get; set; }
+
         public string Nombre { get; set; }
 
         public string Apellido{ get; set; }
@@ -21,6 +22,11 @@ namespace LAB_01.Models
         {
             Data.Instance.personaslist.Add(model);
             return true;
+        }
+
+        public static bool Edit(Personas model)
+        {
+            throw new NotImplementedException();
         }
 
 
