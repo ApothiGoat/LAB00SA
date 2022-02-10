@@ -14,22 +14,128 @@ namespace LAB_01.Controllers
         // GET: HomeController1
         public ActionResult Index(string sortOrder)
         {
-            string nom, last = "";
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Nombre_desc" : "Nombre";
+            int i, j;
+            string aux;
+            int auxn;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Nombre_desc" : "";
             ViewBag.LastSortParm = String.IsNullOrEmpty(sortOrder) ? "Apellido_desc" : "Apellido";
             switch(sortOrder)
             {
                 case "Nombre_desc":
-                    nom = Data.Instance.personaslist.IndexOf();
+                    try
+                    {
+                        for(i = 0; i < Data.Instance.personaslist.Count() - 1; i++)
+                        {
+                            for(j = 0; j < Data.Instance.personaslist.Count() - i - 1; j++)
+                            {
+                                if(Data.Instance.personaslist[i].Nombre[i] < Data.Instance.personaslist[j + 1].Nombre[j + 1])
+                                {
+                                    SwapN(i,j);
+                                }
+                            }
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch(ArgumentException e)
+                    {
+
+                    }
                     break;
                 case "Apellido_desc":
-                    
-                    break;
-                case "Nombre":
-                    
+                    try
+                    {
+                        for (i = 0; i < Data.Instance.personaslist.Count(); i++)
+                        {
+                            for (j = i + 1; j < Data.Instance.personaslist.Count(); j++)
+                            {
+                                if (Data.Instance.personaslist[i].Apellido[i] < Data.Instance.personaslist[j].Apellido[j])
+                                {
+                                    auxn = Data.Instance.personaslist[i].Id;
+                                    Data.Instance.personaslist[i].Id = Data.Instance.personaslist[j].Id;
+                                    Data.Instance.personaslist[j].Id = auxn;
+
+                                    aux = Data.Instance.personaslist[i].Nombre;
+                                    Data.Instance.personaslist[i].Nombre = Data.Instance.personaslist[j].Nombre;
+                                    Data.Instance.personaslist[j].Nombre = aux;
+
+                                    aux = Data.Instance.personaslist[i].Apellido;
+                                    Data.Instance.personaslist[i].Apellido = Data.Instance.personaslist[j].Apellido;
+                                    Data.Instance.personaslist[j].Apellido = aux;
+
+                                    aux = Data.Instance.personaslist[i].Telefono;
+                                    Data.Instance.personaslist[i].Telefono = Data.Instance.personaslist[j].Telefono;
+                                    Data.Instance.personaslist[j].Telefono = aux;
+
+                                    aux = Data.Instance.personaslist[i].Descripcion;
+                                    Data.Instance.personaslist[i].Descripcion = Data.Instance.personaslist[j].Descripcion;
+                                    Data.Instance.personaslist[j].Descripcion = aux;
+                                }
+                            }
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (ArgumentException e)
+                    {
+
+                    }
                     break;
                 case "Apellido":
-                    
+                    try
+                    {
+                        for (i = 0; i < Data.Instance.personaslist.Count(); i++)
+                        {
+                            for (j = i + 1; j < Data.Instance.personaslist.Count(); j++)
+                            {
+                                if (Data.Instance.personaslist[i].Apellido[i] > Data.Instance.personaslist[j].Apellido[0])
+                                {
+                                    auxn = Data.Instance.personaslist[i].Id;
+                                    Data.Instance.personaslist[i].Id = Data.Instance.personaslist[j].Id;
+                                    Data.Instance.personaslist[j].Id = auxn;
+
+                                    aux = Data.Instance.personaslist[i].Nombre;
+                                    Data.Instance.personaslist[i].Nombre = Data.Instance.personaslist[j].Nombre;
+                                    Data.Instance.personaslist[j].Nombre = aux;
+
+                                    aux = Data.Instance.personaslist[i].Apellido;
+                                    Data.Instance.personaslist[i].Apellido = Data.Instance.personaslist[j].Apellido;
+                                    Data.Instance.personaslist[j].Apellido = aux;
+
+                                    aux = Data.Instance.personaslist[i].Telefono;
+                                    Data.Instance.personaslist[i].Telefono = Data.Instance.personaslist[j].Telefono;
+                                    Data.Instance.personaslist[j].Telefono = aux;
+
+                                    aux = Data.Instance.personaslist[i].Descripcion;
+                                    Data.Instance.personaslist[i].Descripcion = Data.Instance.personaslist[j].Descripcion;
+                                    Data.Instance.personaslist[j].Descripcion = aux;
+                                }
+                            }
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (ArgumentException e)
+                    {
+
+                    }
+                    break;
+                default:
+                    try
+                    {
+                        for (i = 0; i < Data.Instance.personaslist.Count() - 1; i++)
+                        {
+                            for (j = 0; j < Data.Instance.personaslist.Count() - i - 1; j++)
+                            {
+                                if (Data.Instance.personaslist[i].Nombre[i] < Data.Instance.personaslist[j + 1].Nombre[j + 1])
+                                {
+                                    SwapN(j, i);
+                                }
+                            }
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (ArgumentException e)
+                    {
+
+                    }
                     break;
             }
             return View(Data.Instance.personaslist);
@@ -116,6 +222,30 @@ namespace LAB_01.Controllers
             {
                 return View();
             }
+        }
+        public void SwapN(int x, int y)
+        {
+            string auxN, auxA, auxT, auxD;
+            int auxnu;
+            auxnu = Data.Instance.personaslist[y].Id;
+            Data.Instance.personaslist[y].Id = Data.Instance.personaslist[y + 1].Id;
+            Data.Instance.personaslist[y + 1].Id = auxnu;
+
+            auxN = Data.Instance.personaslist[y].Nombre;
+            Data.Instance.personaslist[y].Nombre = Data.Instance.personaslist[y + 1].Nombre;
+            Data.Instance.personaslist[y + 1].Nombre = auxN;
+
+            auxA = Data.Instance.personaslist[y].Apellido;
+            Data.Instance.personaslist[y].Apellido = Data.Instance.personaslist[y + 1].Apellido;
+            Data.Instance.personaslist[y + 1].Apellido = auxA;
+
+            auxT = Data.Instance.personaslist[y].Telefono;
+            Data.Instance.personaslist[y].Telefono = Data.Instance.personaslist[y + 1].Telefono;
+            Data.Instance.personaslist[y + 1].Telefono = auxT;
+
+            auxD = Data.Instance.personaslist[y].Descripcion;
+            Data.Instance.personaslist[y].Descripcion = Data.Instance.personaslist[y + 1].Descripcion;
+            Data.Instance.personaslist[y + 1].Descripcion = auxD;
         }
     }
 }
