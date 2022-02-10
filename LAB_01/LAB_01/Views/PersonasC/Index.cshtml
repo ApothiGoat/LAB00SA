@@ -16,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Apellido)
+                @Html.ActionLink("Apellido", "Index", new { sortOrder = ViewBag.LastSortParm })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Telefono)

@@ -12,8 +12,26 @@ namespace LAB_01.Controllers
     public class PersonasC : Controller
     {
         // GET: HomeController1
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            string nom = "", last = "";
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Nombre_desc" : "Nombre";
+            ViewBag.LastSortParm = String.IsNullOrEmpty(sortOrder) ? "Apellido_desc" : "Apellido";
+            switch(sortOrder)
+            {
+                case "Nombre_desc":
+                    var test = Data.Instance.personaslist.Find(per => per.Nombre == "Nombre");
+                    break;
+                case "Apellido_desc":
+                    
+                    break;
+                case "Nombre":
+                    
+                    break;
+                case "Apellido":
+                    
+                    break;
+            }
             return View(Data.Instance.personaslist);
         }
 
