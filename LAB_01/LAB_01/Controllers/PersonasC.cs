@@ -50,25 +50,27 @@ namespace LAB_01.Controllers
                             {
                                 if (Data.Instance.personaslist[i].Apellido[i] < Data.Instance.personaslist[j].Apellido[j])
                                 {
-                                    auxn = Data.Instance.personaslist[i].Id;
-                                    Data.Instance.personaslist[i].Id = Data.Instance.personaslist[j].Id;
-                                    Data.Instance.personaslist[j].Id = auxn;
+                                    SwapN(i, j);
+                                }
+                            }
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (ArgumentException e)
+                    {
 
-                                    aux = Data.Instance.personaslist[i].Nombre;
-                                    Data.Instance.personaslist[i].Nombre = Data.Instance.personaslist[j].Nombre;
-                                    Data.Instance.personaslist[j].Nombre = aux;
-
-                                    aux = Data.Instance.personaslist[i].Apellido;
-                                    Data.Instance.personaslist[i].Apellido = Data.Instance.personaslist[j].Apellido;
-                                    Data.Instance.personaslist[j].Apellido = aux;
-
-                                    aux = Data.Instance.personaslist[i].Telefono;
-                                    Data.Instance.personaslist[i].Telefono = Data.Instance.personaslist[j].Telefono;
-                                    Data.Instance.personaslist[j].Telefono = aux;
-
-                                    aux = Data.Instance.personaslist[i].Descripcion;
-                                    Data.Instance.personaslist[i].Descripcion = Data.Instance.personaslist[j].Descripcion;
-                                    Data.Instance.personaslist[j].Descripcion = aux;
+                    }
+                    break;
+                case "":
+                    try
+                    {
+                        for (i = 0; i < Data.Instance.personaslist.Count() - 1; i++)
+                        {
+                            for (j = 0; j < Data.Instance.personaslist.Count() - i - 1; j++)
+                            {
+                                if (Data.Instance.personaslist[i].Nombre[i] < Data.Instance.personaslist[j + 1].Nombre[j + 1])
+                                {
+                                    SwapN(j, i);
                                 }
                             }
                         }
@@ -88,45 +90,7 @@ namespace LAB_01.Controllers
                             {
                                 if (Data.Instance.personaslist[i].Apellido[i] > Data.Instance.personaslist[j].Apellido[0])
                                 {
-                                    auxn = Data.Instance.personaslist[i].Id;
-                                    Data.Instance.personaslist[i].Id = Data.Instance.personaslist[j].Id;
-                                    Data.Instance.personaslist[j].Id = auxn;
-
-                                    aux = Data.Instance.personaslist[i].Nombre;
-                                    Data.Instance.personaslist[i].Nombre = Data.Instance.personaslist[j].Nombre;
-                                    Data.Instance.personaslist[j].Nombre = aux;
-
-                                    aux = Data.Instance.personaslist[i].Apellido;
-                                    Data.Instance.personaslist[i].Apellido = Data.Instance.personaslist[j].Apellido;
-                                    Data.Instance.personaslist[j].Apellido = aux;
-
-                                    aux = Data.Instance.personaslist[i].Telefono;
-                                    Data.Instance.personaslist[i].Telefono = Data.Instance.personaslist[j].Telefono;
-                                    Data.Instance.personaslist[j].Telefono = aux;
-
-                                    aux = Data.Instance.personaslist[i].Descripcion;
-                                    Data.Instance.personaslist[i].Descripcion = Data.Instance.personaslist[j].Descripcion;
-                                    Data.Instance.personaslist[j].Descripcion = aux;
-                                }
-                            }
-                        }
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch (ArgumentException e)
-                    {
-
-                    }
-                    break;
-                default:
-                    try
-                    {
-                        for (i = 0; i < Data.Instance.personaslist.Count() - 1; i++)
-                        {
-                            for (j = 0; j < Data.Instance.personaslist.Count() - i - 1; j++)
-                            {
-                                if (Data.Instance.personaslist[i].Nombre[i] < Data.Instance.personaslist[j + 1].Nombre[j + 1])
-                                {
-                                    SwapN(j, i);
+                                    SwapN(j,i);
                                 }
                             }
                         }
