@@ -14,13 +14,13 @@ namespace LAB_01.Controllers
         // GET: HomeController1
         public ActionResult Index(string sortOrder)
         {
-            string nom = "", last = "";
+            string nom, last = "";
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Nombre_desc" : "Nombre";
             ViewBag.LastSortParm = String.IsNullOrEmpty(sortOrder) ? "Apellido_desc" : "Apellido";
             switch(sortOrder)
             {
                 case "Nombre_desc":
-                    var test = Data.Instance.personaslist.Find(per => per.Nombre == "Nombre");
+                    nom = Data.Instance.personaslist.IndexOf();
                     break;
                 case "Apellido_desc":
                     
